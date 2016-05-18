@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AlcaldiaInfra" Class="AlcaldiaContextDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SC001SISNOLA\FENIX;Initial Catalog=AlcaldiaInfra;User ID=sa;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="Semop.Data.Properties.Settings" SettingsPropertyName="AlcaldiaInfraConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.SubAlcaldias" Member="SubAlcaldias">
+    <Type Name="SubAlcaldia">
+      <Column Name="IdSubAlcaldia" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Zona" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="NombreSubAlcalde" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Personas" Member="Personas">
+    <Type Name="Persona">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Persona_Responsable" Member="Responsable" ThisKey="Id" OtherKey="Id" Type="Responsable" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Responsables" Member="Responsables">
+    <Type Name="Responsable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FechaAsignacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Persona_Responsable" Member="Persona" ThisKey="Id" OtherKey="Id" Type="Persona" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.SubAlcaldia_Delete" Method="SubAlcaldia_Delete">
+    <Parameter Name="IdSubAlcaldia" Parameter="idSubAlcaldia" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SubAlcaldia_Insert" Method="SubAlcaldia_Insert">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Zona" Parameter="zona" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="NombreSubAlcalde" Parameter="nombreSubAlcalde" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="SubAlcaldia_InsertResult">
+      <Column Name="IdSubAlcaldia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SubAlcaldia_Update" Method="SubAlcaldia_Update">
+    <Parameter Name="IdSubAlcaldia" Parameter="idSubAlcaldia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Zona" Parameter="zona" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="NombreSubAlcalde" Parameter="nombreSubAlcalde" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
