@@ -21,7 +21,7 @@ Se requeriere las siguientes herramientas:
 
 ## Colaboradores
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+Luis Alberto Baigorria R.
 
 ## Licencia
 
