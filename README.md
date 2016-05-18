@@ -19,10 +19,3 @@ Se requeriere las siguientes herramientas:
 - Generar el modelo DBML a partir de la BD.
 
 
-## Colaboradores
-
-Luis Alberto Baigorria R.
-
-## Licencia
-
-
