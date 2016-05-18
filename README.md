@@ -1,34 +1,28 @@
-# basiclinqtosqlsemop
-Proyecto Semop usando la tecnología Linq To Sql y ADO.NET MVC 4. Proyecto usado en el curso de Capacitacion Entity Framework Basic
+# Basic Linq to Sql Semop
+Proyecto Semop usando la tecnología Linq To Sql y ADO.NET MVC 4. 
+Este proyecto es usado en el curso de capacitación e introducción Entity Framework Basic
 
-## Synopsis
+## Introducción
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+Este proyecto es usado en el curso de capacitación e introducción Entity Framework Basic. Se muestra el uso de la tecnología LINQ To SQL, explicando el modelo DBML.
 
-## Code Example
+En LINQ to SQL, el modelo de datos de una base de datos relacional se asigna a un modelo de objetos expresado en el lenguaje de programación del programador. Cuando la aplicación se ejecuta, LINQ to SQL convierte a SQL las consultas integradas en el lenguaje en el modelo de objetos y las envía a la base de datos para su ejecución. Cuando la base de datos devuelve los resultados, LINQ to SQL los vuelve a convertir en objetos con los que pueda trabajar en su propio lenguaje de programación.
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
-## Motivation
+## Instalación
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+Se requeriere las siguientes herramientas:
 
-## Installation
+- Visual Studio Community 2015
+- Sql Server Express 2014 
+- Scripts de Instalación de la Base de datos: semop-scripts.sql
+- Generar el modelo DBML a partir de la BD.
 
-Provide code examples and explanations of how to get the project.
 
-## API Reference
-
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
-## Tests
-
-Describe and show how to run the tests with code examples.
-
-## Contributors
+## Colaboradores
 
 Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
 
-## License
+## Licencia
 
-A short snippet describing the license (MIT, Apache, etc.)
+
