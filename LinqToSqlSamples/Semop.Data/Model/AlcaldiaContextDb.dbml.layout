@@ -2,10 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="AlcaldiaContextDb">
   <DataContextMoniker Name="/AlcaldiaContextDbDataContext" />
   <nestedChildShapes>
-    <classShape Id="c92e04f4-529e-4d0f-a114-666d69eede33" absoluteBounds="4.75, 2.125, 2, 1.9631982421875">
+    <classShape Id="c92e04f4-529e-4d0f-a114-666d69eede33" absoluteBounds="3.375, 1.625, 2, 1.9631982421875">
       <DataClassMoniker Name="/AlcaldiaContextDbDataContext/SubAlcaldia" />
       <nestedChildShapes>
-        <elementListCompartment Id="0401477e-9960-4586-b142-a69af55a0304" absoluteBounds="4.765, 2.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="0401477e-9960-4586-b142-a69af55a0304" absoluteBounds="3.3899999999999997, 2.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="24009b38-4987-4260-970c-003a23e7d761" absoluteBounds="1.125, 1.625, 2, 1.3862939453125">
@@ -14,13 +14,13 @@
         <elementListCompartment Id="f8c7c8b4-2bd0-4dff-b7e2-88d74ae84374" absoluteBounds="1.1400000000000001, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="fda619c4-9ba0-4492-bd20-3eba47c98ecd" absoluteBounds="1.5, 4, 2, 1.1939925130208333">
+    <classShape Id="fda619c4-9ba0-4492-bd20-3eba47c98ecd" absoluteBounds="1.125, 3.5, 2, 1.1939925130208333">
       <DataClassMoniker Name="/AlcaldiaContextDbDataContext/Responsable" />
       <nestedChildShapes>
-        <elementListCompartment Id="94a19700-21ed-4cdc-8e9e-0101799f4e93" absoluteBounds="1.5150000000000001, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="94a19700-21ed-4cdc-8e9e-0101799f4e93" absoluteBounds="1.1400000000000001, 3.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.3125 : 3.0112939453125); (2.3125 : 4)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.125 : 3.0112939453125); (2.125 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/AlcaldiaContextDbDataContext/Persona/Persona_Responsable" />
       <nodes>
         <classShapeMoniker Id="24009b38-4987-4260-970c-003a23e7d761" />

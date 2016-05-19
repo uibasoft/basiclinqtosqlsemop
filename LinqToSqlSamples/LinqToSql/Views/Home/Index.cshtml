@@ -1,4 +1,4 @@
-﻿@model System.Collections.Generic.IEnumerable<LinqToSql.Framework.Pepemosca.Data.SubAlcaldia>
+﻿@model IEnumerable<Semop.Aplicacion.Modulos.Core.SubAlcaldias.Dto.SubAlcaldiaDto>
 @{
     ViewBag.Title = "Index";
 }
@@ -63,8 +63,8 @@
                                 </button>
                                 <ul id="btn-opciones" class="dropdown-menu">
                                     <li>
-                                        <a href="@Url.Action("Editar", "Home", new {id = item.IdSubAlcaldia})"><i class="glyphicon glyphicon glyphicon-edit"> </i> Editar </a>
-                                        <a href="@Url.Action("Eliminar", "Home", new {id = item.IdSubAlcaldia})"><i class="glyphicon glyphicon glyphicon-remove"> </i> Eliminar </a>
+                                        <a href="@Url.Action("Editar", "Home", new {id = item.Id})"><i class="glyphicon glyphicon glyphicon-edit"> </i> Editar </a>
+                                        <a href="@Url.Action("Eliminar", "Home", new {id = item.Id})"><i class="glyphicon glyphicon glyphicon-remove"> </i> Eliminar </a>
                                     </li>
                                 </ul>
                             </div>
