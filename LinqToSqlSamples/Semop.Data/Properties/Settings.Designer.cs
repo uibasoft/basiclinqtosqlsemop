@@ -26,8 +26,8 @@ namespace Semop.Data.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SC001SISNOLA\\FENIX;Initial Catalog=AlcaldiaInfra;User ID=sa;Password=" +
-            "12345;Encrypt=False;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HIPATIA;Initial Catalog=AlcaldiaInfra;Persist Security Info=True;User" +
+            " ID=sa;Password=12345;Encrypt=False;TrustServerCertificate=True")]
         public string AlcaldiaInfraConnectionString {
             get {
                 return ((string)(this["AlcaldiaInfraConnectionString"]));
