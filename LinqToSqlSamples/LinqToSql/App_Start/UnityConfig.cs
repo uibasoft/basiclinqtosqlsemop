@@ -42,12 +42,13 @@ namespace LinqToSql
             // container.LoadConfiguration();
 
             var connectionString = ConfigurationManager.ConnectionStrings["AlcaldiaInfraConnectionString"];
-            if (connectionString == null || string.IsNullOrEmpty(connectionString.ConnectionString))
+            if (string.IsNullOrEmpty(connectionString?.ConnectionString))
                 throw new ConfigurationErrorsException("ConnectionString Key: AlcaldiaInfraConnectionString");
                                    
             container.RegisterType<IUnitOfWork, UnitOfWorkSimple>(new PerRequestLifetimeManager(), new InjectionConstructor(connectionString.ConnectionString));
-            container.RegisterType<IRepositorySubAlcaldias, RepositorySubAlcaldias>();
-            container.RegisterType<ISubAlcaldiasAppServices, SubAlcaldiasAppServices>();
+            container.RegisterType<IRepositorySubAlcaldias, RepositorySubAlcaldias>( new PerRequestLifetimeManager());
+            container.RegisterType<ISubAlcaldiasAppServices, SubAlcaldiasAppServices>( new PerRequestLifetimeManager());
+
         }
     }
 }

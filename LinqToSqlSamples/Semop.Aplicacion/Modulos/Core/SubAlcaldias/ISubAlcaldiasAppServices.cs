@@ -8,7 +8,7 @@ using PagedList;
 
 namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias
 {
-    public interface ISubAlcaldiasAppServices
+    public interface ISubAlcaldiasAppServices 
     {
         SubAlcaldiaDto Obtener(int id);
         bool Guardar(SubAlcaldiaDto dto);

@@ -7,11 +7,12 @@ using Semop.Data.Model;
 
 namespace Semop.Data.Modulos.Core.SubAlcaldias
 {
-    public interface IRepositorySubAlcaldias
+    public interface IRepositorySubAlcaldias : IDisposable
     {
         SubAlcaldia Obtener(int id);
         bool Guardar(SubAlcaldia alcaldia);
         IEnumerable<SubAlcaldia> Listar();        
         bool Eliminar(int[] ids);
+        IUnitOfWork UnitOfWork { get; }
     }
 }

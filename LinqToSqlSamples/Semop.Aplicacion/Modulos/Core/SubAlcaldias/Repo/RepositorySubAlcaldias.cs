@@ -10,23 +10,28 @@ using Semop.Data.Modulos.Core.SubAlcaldias;
 
 namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Repo
 {
-    public class RepositorySubAlcaldias : IRepositorySubAlcaldias, IDisposable
+    public class RepositorySubAlcaldias : IRepositorySubAlcaldias
     {
-        public UnitOfWorkSimple UnitOfWork { get; }
-
+        private readonly UnitOfWorkSimple _unitOfWorkSimple;
         public RepositorySubAlcaldias(IUnitOfWork unitOfWork)
         {
             if (unitOfWork == null)
                 throw new ArgumentNullException(nameof(unitOfWork));
-            UnitOfWork = unitOfWork as UnitOfWorkSimple;
+            _unitOfWorkSimple = unitOfWork as UnitOfWorkSimple;
         }
-
+        public IUnitOfWork UnitOfWork
+        {
+            get
+            {
+                return _unitOfWorkSimple;
+            }
+        }
         public SubAlcaldia Obtener(int id)
         {
             SubAlcaldia result = null;
             try
             {
-                var entidad = (from ele in UnitOfWork.SubAlcaldias
+                var entidad = (from ele in _unitOfWorkSimple.SubAlcaldias
                               where ele.IdSubAlcaldia == id
                               select ele).ToList().FirstOrDefault();
 
@@ -41,14 +46,13 @@ namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Repo
             return result;
 
         }
-
         public bool Guardar(SubAlcaldia alcaldia)
         {
             bool result;
             try
             {
-                UnitOfWork.SubAlcaldias.InsertOnSubmit(alcaldia);
-                UnitOfWork.SubmitChanges();
+                _unitOfWorkSimple.SubAlcaldias.InsertOnSubmit(alcaldia);
+                _unitOfWorkSimple.SubmitChanges();
                 result = true;
             }
             catch (Exception ex)
@@ -58,13 +62,12 @@ namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Repo
             }
             return result;
         }
-
         public IEnumerable<SubAlcaldia> Listar()
         {
             IEnumerable<SubAlcaldia> result = null;
             try
             {
-                var list = (from ele in UnitOfWork.SubAlcaldias
+                var list = (from ele in _unitOfWorkSimple.SubAlcaldias
                                select ele);
                 result = list;
             }
@@ -74,17 +77,16 @@ namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Repo
             }
             return result;
         }
-
         public bool Eliminar(int[] ids)
         {
             bool result;
             try
             {
-                var entities = from ele in UnitOfWork.SubAlcaldias
+                var entities = from ele in _unitOfWorkSimple.SubAlcaldias
                                where ids.Contains(ele.IdSubAlcaldia)
                                select ele;
-                UnitOfWork.SubAlcaldias.DeleteAllOnSubmit(entities);
-                UnitOfWork.SubmitChanges();
+                _unitOfWorkSimple.SubAlcaldias.DeleteAllOnSubmit(entities);
+                _unitOfWorkSimple.SubmitChanges();
                 result = true;
             }
             catch (Exception ex)
@@ -94,10 +96,9 @@ namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Repo
             }
             return result;
         }
-
         public void Dispose()
         {
-            UnitOfWork.Dispose();
+            _unitOfWorkSimple.Dispose();
         }
 
     }

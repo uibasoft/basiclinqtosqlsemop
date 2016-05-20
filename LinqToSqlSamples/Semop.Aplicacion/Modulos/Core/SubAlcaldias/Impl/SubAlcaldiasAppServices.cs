@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PagedList;
 using Semop.Aplicacion.Modulos.Core.SubAlcaldias.Dto;
+using Semop.Data.Model;
 using Semop.Data.Modulos.Core.SubAlcaldias;
 
 namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Impl
@@ -24,17 +25,91 @@ namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Impl
 
         public bool Editar(SubAlcaldiaDto dto)
         {
-            throw new NotImplementedException();
+            bool result = false;
+            try
+            {
+                if (dto == null)
+                    return result;
+
+                #region Validaciones
+
+
+                if (string.IsNullOrWhiteSpace(dto.Nombre))
+                    return result;
+
+                #endregion
+
+                var unitOfWork = RepositorySubAlcaldias.UnitOfWork as UnitOfWorkSimple;
+                if (unitOfWork != null)
+                {
+                    var entity = unitOfWork.SubAlcaldias.SingleOrDefault(ele => ele.IdSubAlcaldia == dto.Id);
+                    if (entity == null)
+                        return false;
+                    entity.Nombre = dto.Nombre;
+                    entity.Direccion = dto.Direccion;
+                    entity.NombreSubAlcalde = dto.NombreSubAlcalde;
+                    entity.Telefono = dto.Telefono;
+                    entity.Zona = entity.Zona;
+                    unitOfWork.SubmitChanges();
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                var mensaje = ex.Message;
+                result = false;
+            }
+            return result;
         }
 
         public bool Eliminar(int[] ids)
         {
-            throw new NotImplementedException();
+            bool result;
+            try
+            {
+                result = RepositorySubAlcaldias.Eliminar(ids);
+            }
+            catch (Exception ex)
+            {
+                var mensaje = ex.Message;
+                result = false;
+            }
+            return result;
         }
 
         public bool Guardar(SubAlcaldiaDto dto)
         {
-            throw new NotImplementedException();
+            bool result = false;
+            try
+            {
+                if (dto == null)
+                    return result;
+
+                #region Validaciones
+
+
+                if (string.IsNullOrWhiteSpace(dto.Nombre))
+                    return result;
+
+                #endregion
+
+                var entity = new SubAlcaldia()
+                {
+                    Nombre = dto.Nombre,
+                    Direccion = dto.Direccion,
+                    Telefono = dto.Telefono,
+                    Zona = dto.Zona,
+                    NombreSubAlcalde = dto.NombreSubAlcalde,
+                };
+
+                result = RepositorySubAlcaldias.Guardar(entity);
+            }
+            catch (Exception ex)
+            {
+                var mensaje = ex.Message;
+                result = false;
+            }
+            return result;
         }
 
         public List<SubAlcaldiaDto> Listar(string nombre, string direccion, int? pageIndex, int pageSize)
@@ -62,12 +137,6 @@ namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Impl
                     Telefono = e.Telefono,
                     NombreSubAlcalde = e.NombreSubAlcalde
                 }));
-
-                //var pageSiz = lista.PageSize;
-                //var pageCount = lista.PageCount;
-                //var pageNumb = lista.PageNumber;
-                // Asignar en un Futuro la Paginacion
-
             }
             catch (Exception ex)
             {
@@ -102,6 +171,5 @@ namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Impl
             }
             return result;
         }
-
     }
 }

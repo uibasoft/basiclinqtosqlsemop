@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LinqToSql.Framework.Pepemosca.Data;
 using Semop.Aplicacion.Modulos.Core.SubAlcaldias;
+using Semop.Aplicacion.Modulos.Core.SubAlcaldias.Dto;
 
 namespace LinqToSql.Controllers
 {
@@ -24,66 +25,11 @@ namespace LinqToSql.Controllers
 
         }
 
-        //public void LinqToSqlSamples()
-        //{
-
-        //    // LISTADO
-        //    var listado = from su in _db.SubAlcaldias
-        //                  select su;
-        //    var subalcaldias = listado.ToList();
-
-        //    // NUEVO
-        //    var subAlcaldia = new SubAlcaldia()
-        //    {
-        //        Nombre = "Sub Alcaldia DM-05",
-        //        Direccion = "Av. Beni",
-        //        Telefono = "33557618",
-        //        Zona = "Norte"
-        //    };
-        //    _db.SubAlcaldias.InsertOnSubmit(subAlcaldia);
-        //    _db.SubmitChanges();
-
-        //    // MODIFICAR
-        //    var id = 1;
-        //    var newDireccion = "Av. Mutualista";
-        //    var newTelefono = "73112828";
-        //    var subAlcaldiaToUpdate = _db.SubAlcaldias
-        //                                 .SingleOrDefault(ele => ele.IdSubAlcaldia == id);
-        //    if (subAlcaldiaToUpdate == null) { /* Mensaje */ }
-        //    subAlcaldiaToUpdate.Direccion = newDireccion;
-        //    subAlcaldiaToUpdate.Telefono = newTelefono;
-        //    _db.SubmitChanges();
-                    
-
-        //    // ELIMINAR
-        //    var dto = new SubAlcaldia()
-        //    {
-        //        IdSubAlcaldia = 1
-        //    };
-        //    var entitie = _db.SubAlcaldias
-        //                     .SingleOrDefault(ele => 
-        //                     ele.IdSubAlcaldia == dto.IdSubAlcaldia);
-        //    if (entitie != null)
-        //    {
-        //        _db.SubAlcaldias.DeleteOnSubmit(entitie);
-        //        _db.SubmitChanges();
-        //    }
-
-        //}
-
         // GET: Home
         public ActionResult Index()
         {
-
-            //var subAlcaldias = from su in _db.SubAlcaldias
-            //                   select su;
-            //var lista = subAlcaldias.ToList();
-
             var lista = SubAlcaldiasApp.Listar(string.Empty, string.Empty, 1, 10);
-
-
             return View(lista);
-
         }
 
         // GET: Home/Crear
@@ -95,13 +41,12 @@ namespace LinqToSql.Controllers
         // POST: Home/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Crear([Bind(Include = "IdSubAlcaldia,Nombre,Direccion,Zona,Telefono, NombreSubAlcalde")] SubAlcaldia subAlcaldia)
+        public ActionResult Crear([Bind(Include = "Id,Nombre,Direccion,Zona,Telefono, NombreSubAlcalde")] SubAlcaldiaDto subAlcaldia)
         {
             if (!ModelState.IsValid) return View(subAlcaldia);
             try
             {
-                _db.SubAlcaldias.InsertOnSubmit(subAlcaldia);
-                _db.SubmitChanges();
+                var result = SubAlcaldiasApp.Guardar(subAlcaldia);
             }
             catch (Exception ex)
             {
@@ -118,8 +63,7 @@ namespace LinqToSql.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            var subAlcaldia = _db.SubAlcaldias.SingleOrDefault(ele => ele.IdSubAlcaldia == id);
+            var subAlcaldia = SubAlcaldiasApp.Obtener(id.Value);
             if (subAlcaldia == null)
             {
                 if (exceptionError.GetValueOrDefault())
@@ -141,21 +85,16 @@ namespace LinqToSql.Controllers
         // POST: Home/Eliminar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Eliminar(SubAlcaldia salcaldia)
+        public ActionResult Eliminar(SubAlcaldiaDto salcaldia)
         {
             try
             {
-                var entitie = _db.SubAlcaldias.SingleOrDefault(ele => ele.IdSubAlcaldia == salcaldia.IdSubAlcaldia);
-                if (entitie != null)
-                {
-                    _db.SubAlcaldias.DeleteOnSubmit(entitie);
-                    _db.SubmitChanges();
-                }
+                var result = SubAlcaldiasApp.Eliminar(new[] {salcaldia.Id});             
                 return RedirectToAction("Index");
             }
             catch (DataException ex)
             {
-                return RedirectToAction("Eliminar", new { exceptionError = true, id = salcaldia.IdSubAlcaldia });
+                return RedirectToAction("Eliminar", new { exceptionError = true, id = salcaldia.Id });
             }
         }
 
@@ -165,13 +104,13 @@ namespace LinqToSql.Controllers
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var subAlcaldia = _db.SubAlcaldias.SingleOrDefault(ele => ele.IdSubAlcaldia == id);
-            if (subAlcaldia == null)
+            }          
+            var subAlcaldiaDto = SubAlcaldiasApp.Obtener(id.Value);
+            if (subAlcaldiaDto == null)
             {
                 return HttpNotFound();
             }
-            return View(subAlcaldia);
+            return View(subAlcaldiaDto);
         }
 
         // POST: Home/Editar/5
@@ -186,37 +125,27 @@ namespace LinqToSql.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var subAlcaldiaToUpdate = _db.SubAlcaldias.SingleOrDefault(ele => ele.IdSubAlcaldia == id);
-            if (subAlcaldiaToUpdate == null)
+            var subAlcaldiaToUpdateDto = SubAlcaldiasApp.Obtener(id.Value);
+            if (subAlcaldiaToUpdateDto == null)
             {
-                var deletedSubAlcaldia = new SubAlcaldia();
+                var deletedSubAlcaldia = new SubAlcaldiaDto();
                 TryUpdateModel(deletedSubAlcaldia, fieldsToBind);
                 ModelState.AddModelError(string.Empty, "No se puede guardar los cambios. El elemento fué eliminado por otro usuario.");
                 return View(deletedSubAlcaldia);
             }
 
-            if (!TryUpdateModel(subAlcaldiaToUpdate, fieldsToBind)) return View(subAlcaldiaToUpdate);
+            if (!TryUpdateModel(subAlcaldiaToUpdateDto, fieldsToBind)) return View(subAlcaldiaToUpdateDto);
 
             try
             {
-                _db.SubmitChanges();
+                var result = SubAlcaldiasApp.Editar(subAlcaldiaToUpdateDto);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "No se puede guardar los cambios. Inténtelo de nuevo, y si el problema persiste, consulte con el administrador del sistema.");
             }
-            return View(subAlcaldiaToUpdate);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();               
-            }
-           
-            base.Dispose(disposing);
+            return View(subAlcaldiaToUpdateDto);
         }
     }
 }
