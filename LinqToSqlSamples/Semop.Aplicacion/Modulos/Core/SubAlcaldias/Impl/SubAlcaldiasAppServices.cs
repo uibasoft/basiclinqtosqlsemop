@@ -229,5 +229,6 @@ namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Impl
             }
             return result;
         }
+
     }
 }
