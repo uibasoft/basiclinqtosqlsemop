@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using PagedList;
-using Semop.Aplicacion.Modulos.Core.SubAlcaldias.Dto;
+using Semop.Aplicacion.Modulos.Core.SubAlcaldias.Dtos;
 using Semop.Data.Model;
 using Semop.Data.Modulos.Core.SubAlcaldias;
 
@@ -21,6 +21,64 @@ namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Impl
                 throw new ArgumentNullException(nameof(pRepositorySubAlcaldias));
             RepositorySubAlcaldias = pRepositorySubAlcaldias;
 
+        }
+
+        public bool GuardarAsignarResponsable(SubAlcaldiaDto dto)
+        {
+            bool result = false;
+            try
+            {
+                if (dto == null)
+                    return result;
+
+                #region Validaciones
+
+
+                if (string.IsNullOrWhiteSpace(dto.Nombre))
+                    return result;
+
+                #endregion
+
+                var unitOfWork = RepositorySubAlcaldias.UnitOfWork as UnitOfWorkSimple;
+
+                if (unitOfWork != null)
+                {
+                    var entity = new SubAlcaldia()
+                    {
+                        Nombre = dto.Nombre,
+                        Direccion = dto.Direccion,
+                        Telefono = dto.Telefono,
+                        Zona = dto.Zona,
+                        NombreSubAlcalde = dto.NombreSubAlcalde,
+                    };
+
+                    unitOfWork.SubAlcaldias.InsertOnSubmit(entity);
+
+                    if (!string.IsNullOrWhiteSpace(dto.NombreSubAlcalde))
+                    {
+                        var resp = new Responsable()
+                        {
+                            FechaAsignacion = DateTime.Now,
+                            Persona = new Persona()
+                            {
+                                FirstName = dto.NombreSubAlcalde,
+                                LastName = dto.NombreSubAlcalde
+                            }
+                        };
+                        unitOfWork.Responsables.InsertOnSubmit(resp);
+                    }
+
+                    unitOfWork.SubmitChanges();
+
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                var mensaje = ex.Message;
+                result = false;
+            }
+            return result;
         }
 
         public bool Editar(SubAlcaldiaDto dto)

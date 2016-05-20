@@ -2,10 +2,14 @@ using System;
 using System.Configuration;
 using Microsoft.Practices.Unity;
 using Semop.Aplicacion;
+using Semop.Aplicacion.Modulos.Core.Responsables;
+using Semop.Aplicacion.Modulos.Core.Responsables.Impl;
+using Semop.Aplicacion.Modulos.Core.Responsables.Repo;
 using Semop.Aplicacion.Modulos.Core.SubAlcaldias;
 using Semop.Aplicacion.Modulos.Core.SubAlcaldias.Impl;
 using Semop.Aplicacion.Modulos.Core.SubAlcaldias.Repo;
 using Semop.Data;
+using Semop.Data.Modulos.Core.Responsables;
 using Semop.Data.Modulos.Core.SubAlcaldias;
 
 namespace LinqToSql
@@ -41,13 +45,24 @@ namespace LinqToSql
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
-            var connectionString = ConfigurationManager.ConnectionStrings["AlcaldiaInfraConnectionString"];
+            var connectionString = ConfigurationManager.ConnectionStrings["AlcaldiaInfraConnectionString1"];
             if (string.IsNullOrEmpty(connectionString?.ConnectionString))
                 throw new ConfigurationErrorsException("ConnectionString Key: AlcaldiaInfraConnectionString");
                                    
             container.RegisterType<IUnitOfWork, UnitOfWorkSimple>(new PerRequestLifetimeManager(), new InjectionConstructor(connectionString.ConnectionString));
+            #region Repositorios
+
             container.RegisterType<IRepositorySubAlcaldias, RepositorySubAlcaldias>( new PerRequestLifetimeManager());
+            container.RegisterType<IRepositoryResponsables, RepositoryResponsables>(new PerRequestLifetimeManager());
+
+            #endregion
+
+            #region Services
+
             container.RegisterType<ISubAlcaldiasAppServices, SubAlcaldiasAppServices>( new PerRequestLifetimeManager());
+            container.RegisterType<IResponsablesAppServices, ResponsablesAppServices>(new PerRequestLifetimeManager());
+
+            #endregion
 
         }
     }

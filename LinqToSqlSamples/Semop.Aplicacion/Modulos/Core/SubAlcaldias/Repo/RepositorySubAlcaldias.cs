@@ -62,6 +62,9 @@ namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Repo
             }
             return result;
         }
+
+      
+
         public IEnumerable<SubAlcaldia> Listar()
         {
             IEnumerable<SubAlcaldia> result = null;

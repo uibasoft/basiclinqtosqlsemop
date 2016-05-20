@@ -49,7 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modulos\Core\SubAlcaldias\Dto\SubAlcaldiaDto.cs" />
+    <Compile Include="Modulos\Core\Responsables\Dtos\PersonaDto.cs" />
+    <Compile Include="Modulos\Core\Responsables\Dtos\ResponsableDto.cs" />
+    <Compile Include="Modulos\Core\Responsables\Impl\ResponsablesAppServices.cs" />
+    <Compile Include="Modulos\Core\Responsables\IResponsablesAppServices.cs" />
+    <Compile Include="Modulos\Core\Responsables\Repo\RepositoryResponsables.cs" />
+    <Compile Include="Modulos\Core\SubAlcaldias\Dtos\SubAlcaldiaDto.cs" />
     <Compile Include="Modulos\Core\SubAlcaldias\Impl\SubAlcaldiasAppServices.cs" />
     <Compile Include="Modulos\Core\SubAlcaldias\ISubAlcaldiasAppServices.cs" />
     <Compile Include="Modulos\Core\SubAlcaldias\Repo\RepositorySubAlcaldias.cs" />

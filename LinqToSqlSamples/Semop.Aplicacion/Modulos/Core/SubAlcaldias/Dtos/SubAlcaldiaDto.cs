@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Dto
+namespace Semop.Aplicacion.Modulos.Core.SubAlcaldias.Dtos
 {
     public class SubAlcaldiaDto
     {

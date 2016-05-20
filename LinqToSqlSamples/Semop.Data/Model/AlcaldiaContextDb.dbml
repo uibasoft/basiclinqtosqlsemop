@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AlcaldiaInfra" Class="AlcaldiaContextDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=HIPATIA;Initial Catalog=AlcaldiaInfra;Persist Security Info=True;User ID=sa;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="Semop.Data.Properties.Settings" SettingsPropertyName="AlcaldiaInfraConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SC001SISNOLA\FENIX;Initial Catalog=AlcaldiaInfra;User ID=sa;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="Semop.Data.Properties.Settings" SettingsPropertyName="AlcaldiaInfraConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.SubAlcaldias" Member="SubAlcaldias">
     <Type Name="SubAlcaldia">
       <Column Name="IdSubAlcaldia" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

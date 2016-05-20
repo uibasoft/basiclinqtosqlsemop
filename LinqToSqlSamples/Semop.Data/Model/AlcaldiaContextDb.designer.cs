@@ -42,7 +42,7 @@ namespace Semop.Data.Model
     #endregion
 		
 		public AlcaldiaContextDbDataContext() : 
-				base(global::Semop.Data.Properties.Settings.Default.AlcaldiaInfraConnectionString, mappingSource)
+				base(global::Semop.Data.Properties.Settings.Default.AlcaldiaInfraConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}

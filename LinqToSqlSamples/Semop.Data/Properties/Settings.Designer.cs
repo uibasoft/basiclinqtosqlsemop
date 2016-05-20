@@ -33,5 +33,16 @@ namespace Semop.Data.Properties {
                 return ((string)(this["AlcaldiaInfraConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SC001SISNOLA\\FENIX;Initial Catalog=AlcaldiaInfra;User ID=sa;Password=" +
+            "12345;Encrypt=False;TrustServerCertificate=True")]
+        public string AlcaldiaInfraConnectionString1 {
+            get {
+                return ((string)(this["AlcaldiaInfraConnectionString1"]));
+            }
+        }
     }
 }

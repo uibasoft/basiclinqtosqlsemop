@@ -42,7 +42,7 @@ namespace LinqToSql.Framework.Pepemosca.Data
     #endregion
 		
 		public AlcaldiaContextDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["AlcaldiaInfraConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["AlcaldiaInfraConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

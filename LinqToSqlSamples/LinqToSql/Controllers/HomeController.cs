@@ -8,17 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using LinqToSql.Framework.Pepemosca.Data;
 using Semop.Aplicacion.Modulos.Core.SubAlcaldias;
-using Semop.Aplicacion.Modulos.Core.SubAlcaldias.Dto;
+using Semop.Aplicacion.Modulos.Core.SubAlcaldias.Dtos;
 
 namespace LinqToSql.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly AlcaldiaContextDataContext _db = new AlcaldiaContextDataContext();
         protected readonly ISubAlcaldiasAppServices SubAlcaldiasApp;
         public HomeController(ISubAlcaldiasAppServices pSubAlcaldiasApp)
         {
-
             if(pSubAlcaldiasApp == null)
                 throw new ArgumentNullException(nameof(pSubAlcaldiasApp));
             SubAlcaldiasApp = pSubAlcaldiasApp;
@@ -46,7 +44,7 @@ namespace LinqToSql.Controllers
             if (!ModelState.IsValid) return View(subAlcaldia);
             try
             {
-                var result = SubAlcaldiasApp.Guardar(subAlcaldia);
+                var result = SubAlcaldiasApp.GuardarAsignarResponsable(subAlcaldia);
             }
             catch (Exception ex)
             {
