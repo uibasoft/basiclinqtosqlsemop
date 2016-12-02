@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LinqToSql.Framework.Pepemosca.Data
+namespace Semop.Data.Model
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -23,7 +23,7 @@ namespace LinqToSql.Framework.Pepemosca.Data
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="AlcaldiaInfra")]
-	public partial class AlcaldiaContextDataContext : System.Data.Linq.DataContext
+	public partial class AlcaldiaContextDbDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -41,31 +41,31 @@ namespace LinqToSql.Framework.Pepemosca.Data
     partial void DeleteResponsable(Responsable instance);
     #endregion
 		
-		public AlcaldiaContextDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["AlcaldiaInfraConnectionString1"].ConnectionString, mappingSource)
+		public AlcaldiaContextDbDataContext() : 
+				base(global::Semop.Data.Properties.Settings.Default.AlcaldiaInfraConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public AlcaldiaContextDataContext(string connection) : 
+		public AlcaldiaContextDbDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public AlcaldiaContextDataContext(System.Data.IDbConnection connection) : 
+		public AlcaldiaContextDbDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public AlcaldiaContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public AlcaldiaContextDbDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public AlcaldiaContextDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public AlcaldiaContextDbDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -95,6 +95,13 @@ namespace LinqToSql.Framework.Pepemosca.Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SubAlcaldia_Delete")]
+		public int SubAlcaldia_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSubAlcaldia", DbType="Int")] System.Nullable<int> idSubAlcaldia)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idSubAlcaldia);
+			return ((int)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SubAlcaldia_Insert")]
 		public ISingleResult<SubAlcaldia_InsertResult> SubAlcaldia_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="NVarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="NVarChar(MAX)")] string direccion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Zona", DbType="NVarChar(50)")] string zona, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="NVarChar(30)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreSubAlcalde", DbType="NVarChar(50)")] string nombreSubAlcalde)
 		{
@@ -106,13 +113,6 @@ namespace LinqToSql.Framework.Pepemosca.Data
 		public int SubAlcaldia_Update([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSubAlcaldia", DbType="Int")] System.Nullable<int> idSubAlcaldia, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="NVarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="NVarChar(MAX)")] string direccion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Zona", DbType="NVarChar(50)")] string zona, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Telefono", DbType="NVarChar(30)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreSubAlcalde", DbType="NVarChar(50)")] string nombreSubAlcalde)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idSubAlcaldia, nombre, direccion, zona, telefono, nombreSubAlcalde);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SubAlcaldia_Delete")]
-		public int SubAlcaldia_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdSubAlcaldia", DbType="Int")] System.Nullable<int> idSubAlcaldia)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idSubAlcaldia);
 			return ((int)(result.ReturnValue));
 		}
 	}

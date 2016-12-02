@@ -20,7 +20,7 @@
         <elementListCompartment Id="3dc5ba9a-cbaf-49d1-a431-54f262591eaa" absoluteBounds="5.14, 3.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.5 : 1.19314697265625); (6.125 : 1.19314697265625); (6.125 : 2.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.5 : 1.19314697265625); (6.125 : 1.19314697265625); (6.125 : 2.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/AlcaldiaContextDataContext/Persona/Persona_Responsable" />
       <nodes>
         <classShapeMoniker Id="2253a351-d7ca-4c8f-b22a-463174979eff" />

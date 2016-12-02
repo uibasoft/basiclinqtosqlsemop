@@ -1,4 +1,4 @@
-﻿@model LinqToSql.Framework.Pepemosca.Data.SubAlcaldia
+﻿@model Semop.Aplicacion.Modulos.Core.SubAlcaldias.Dtos.SubAlcaldiaDto
 
 @{
     ViewBag.Title = "Editar";
@@ -21,7 +21,7 @@
                 @Html.ValidationSummary(true, "")
             </div>
         }
-        @Html.HiddenFor(model => model.IdSubAlcaldia)
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
